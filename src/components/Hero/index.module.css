@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 64px;
+}
+
+.textContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.playContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.imageContainer {
+  display: flex;
+  flex: 0.75;
+  justify-content: center;
+}
+
+.innerImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  width: 200px;
+  height: 500px;
+  box-shadow: 12px 24px 64px rgba(0, 0, 0, 0.25);
+}
+
+.shadow {
+  clip-path: inset(1.5% round 18px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .innerImageContainer {
+    box-shadow: 12px 24px 64px rgba(222, 222, 222, 0.25);
+  }
+}
