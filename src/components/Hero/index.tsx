@@ -6,8 +6,8 @@ export default function Hero() {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h1 style={{ marginBottom: 32 }}>Split expenses without the stress</h1>
-        <p style={{ lineHeight: 2, paddingRight: "35%" }}>
+        <h1 className={styles.heading}>Split expenses without the stress</h1>
+        <p className={styles.subHeading}>
           DiviMate helps you track, split, and settle group expenses — whether
           you’re traveling, sharing a home, or just hanging out with friends.
         </p>
