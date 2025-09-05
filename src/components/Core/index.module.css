@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.infoContainer {
+  min-height: 100vh;
+}
+
+.animationsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100vh;
+}
