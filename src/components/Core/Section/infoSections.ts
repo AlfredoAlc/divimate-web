@@ -13,4 +13,25 @@ export const Sections: InfoSection[] = [
       "See the balances for all your friends in one screen. If multiple currencies balances are available toggle the currency balance from the header.",
     icon: "ReceiptText",
   },
+  {
+    id: "info-2",
+    title: "Group expenses",
+    subtitle:
+      "Create groups for any purpose, invite your friends and start adding expenses. Review any expense and see clear balances.",
+    icon: "Users",
+  },
+  {
+    id: "info-3",
+    title: "Split expenses your way",
+    subtitle:
+      "You have the flexibility to divide costs however you need. Choose from equal shares, exact amounts, percentages, itemized shares, or adjustments to make sure everyone pays their fair part.",
+    icon: "SlidersHorizontal",
+  },
+  {
+    id: "info-4",
+    title: "Works offline",
+    subtitle:
+      "No connection. No problem, continue adding expenses it'll sync later.",
+    icon: "WifiOff",
+  },
 ];

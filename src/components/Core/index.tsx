@@ -13,6 +13,8 @@ import { Sections } from "./Section/infoSections";
 export default function Core() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  const isLeaving = useRef(false);
+
   const [isFixed, setIsFixed] = useState(false);
   const [width, setWidth] = useState(0);
 
@@ -22,6 +24,21 @@ export default function Core() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFixed]);
+
+  const handleScrollEvent = useCallback(
+    (e: Event) => {
+      const { target, way } = (e as CustomEvent).detail;
+
+      if (target.id === "info-1")
+        isLeaving.current = way === "enter" && isFixed;
+
+      if (target.id === "info-2") {
+        setIsFixed(way === "enter" || !isLeaving.current);
+        updateWidth();
+      }
+    },
+    [updateWidth, isLeaving, isFixed],
+  );
 
   useEffect(() => {
     if (scrollContainerRef.current) {
@@ -39,15 +56,8 @@ export default function Core() {
   }, [scrollContainerRef]);
 
   useEffect(() => {
-    addEventListener("scrollEvent", (e: Event) => {
-      const { target, way } = (e as CustomEvent).detail;
-
-      if (target.id === "info-2") {
-        setIsFixed(way === "enter");
-        updateWidth();
-      }
-    });
-  }, [updateWidth]);
+    addEventListener("scrollEvent", handleScrollEvent);
+  }, [handleScrollEvent]);
 
   useEffect(() => {
     updateWidth();
@@ -82,17 +92,6 @@ export default function Core() {
       </div>
       <div ref={scrollContainerRef} data-scroll-container style={{ flex: 1 }}>
         {Sections.map(renderItems)}
-        <div
-          id="info-2"
-          className={styles.infoContainer}
-          style={{ backgroundColor: "aliceblue" }}
-          data-scroll
-          data-scroll-repeat
-          data-scroll-ignore-fold
-          data-scroll-call="scrollEvent"
-        >
-          <h2>Some text for divimate infosdfsdf</h2>
-        </div>
       </div>
     </div>
   );

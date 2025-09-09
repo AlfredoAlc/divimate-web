@@ -4,10 +4,6 @@
   flex: 1;
 }
 
-.infoContainer {
-  min-height: 100vh;
-}
-
 .animationsContainer {
   display: flex;
   align-items: center;
