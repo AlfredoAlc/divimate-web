@@ -1,7 +1,8 @@
 import styles from "./index.module.css";
 
-import type { InfoSection } from "./infoSections";
+import type { InfoSection } from "./utils";
 
+import { useEffect } from "react";
 import {
   Bug,
   ReceiptText,
@@ -10,7 +11,13 @@ import {
   WifiOff,
 } from "lucide-react";
 
-export default function Section({ id, title, subtitle, icon }: InfoSection) {
+export default function Section({
+  id,
+  title,
+  subtitle,
+  icon,
+  extra,
+}: InfoSection) {
   const Icon =
     icon === "ReceiptText"
       ? ReceiptText
@@ -22,6 +29,14 @@ export default function Section({ id, title, subtitle, icon }: InfoSection) {
             ? WifiOff
             : Bug;
 
+  useEffect(() => {
+    addEventListener("progressEvent", (e: Event) => {
+      const { target, progress } = (e as CustomEvent).detail;
+
+      target.style.opacity = progress * 1.5;
+    });
+  }, []);
+
   return (
     <div
       id={id}
@@ -31,9 +46,28 @@ export default function Section({ id, title, subtitle, icon }: InfoSection) {
       data-scroll-ignore-fold
       data-scroll-call="scrollEvent"
     >
-      <Icon size={40} style={{ marginBottom: "16px" }} />
-      <h2 className={styles.title}>{title}</h2>
+      <Icon size={40} style={{ marginBottom: "16px" }} color="#5c45f5" />
+      <h2
+        id={`title-${id}`}
+        className={styles.title}
+        data-scroll
+        data-scroll-repeat
+        data-scroll-call="scrollTitleEvent"
+      >
+        {title}
+      </h2>
       <p className={styles.subtitle}>{subtitle}</p>
+      {extra && (
+        <a
+          href="/group"
+          className={styles.extraContainer}
+          data-scroll
+          data-scroll-offset="0,50%"
+          data-scroll-event-progress="progressEvent"
+        >
+          See more groups features
+        </a>
+      )}
     </div>
   );
 }

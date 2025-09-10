@@ -17,3 +17,10 @@
   line-height: 2;
   padding-left: 35%;
 }
+
+.extraContainer {
+  margin-top: 60px;
+  align-self: center;
+  color: var(--grayAzure);
+  font-size: var(--fs-lg);
+}

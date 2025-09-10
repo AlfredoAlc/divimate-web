@@ -2,19 +2,23 @@
 
 import styles from "./index.module.css";
 
-import type { InfoSection } from "./Section/infoSections";
+import type { InfoSection } from "./Section/utils";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 
+import VideoCarrousel from "../VideoCarrousel";
 import Section from "./Section";
-import { Sections } from "./Section/infoSections";
+import { DARK_VIDEOS, LIGHT_VIDEOS, Sections } from "./Section/utils";
+import useTheme from "@/hooks/useTheme";
 
 export default function Core() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   const isLeaving = useRef(false);
 
+  const [currentVideo, setCurrentVideo] = useState(0);
   const [isFixed, setIsFixed] = useState(false);
   const [width, setWidth] = useState(0);
 
@@ -40,6 +44,16 @@ export default function Core() {
     [updateWidth, isLeaving, isFixed],
   );
 
+  const handleScrollTitleEvent = useCallback((e: Event) => {
+    const { target, way } = (e as CustomEvent).detail;
+
+    if (way === "enter") {
+      const idArray = target.id.split("-");
+      const index = Number(idArray[2]) - 1;
+      setCurrentVideo(index);
+    }
+  }, []);
+
   useEffect(() => {
     if (scrollContainerRef.current) {
       const scroll = new LocomotiveScroll({
@@ -58,6 +72,10 @@ export default function Core() {
   useEffect(() => {
     addEventListener("scrollEvent", handleScrollEvent);
   }, [handleScrollEvent]);
+
+  useEffect(() => {
+    addEventListener("scrollTitleEvent", handleScrollTitleEvent);
+  }, [handleScrollTitleEvent]);
 
   useEffect(() => {
     updateWidth();
@@ -82,12 +100,9 @@ export default function Core() {
           width,
         }}
       >
-        <div
-          style={{
-            width: "35vh",
-            height: "35vh",
-            backgroundColor: "blue",
-          }}
+        <VideoCarrousel
+          currentVideo={currentVideo}
+          videos={theme === "dark" ? DARK_VIDEOS : LIGHT_VIDEOS}
         />
       </div>
       <div ref={scrollContainerRef} data-scroll-container style={{ flex: 1 }}>
