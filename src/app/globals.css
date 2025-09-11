@@ -8,6 +8,12 @@
   --error: #f62913;
   --success: #257e1a;
   --gray: #ababab;
+  --backgroundAlt1: #40a6ff;
+  --backgroundAlt2: #e2c08d;
+  --backgroundAlt3: #8bce97;
+  --backgroundAlt4: #f8af49;
+  --backgroundAlt5: #7a70b2;
+  --backgroundAlt6: #74d1ea;
 
   --fs-xs: 0.75rem; /* 12px */
   --fs-sm: 0.875rem; /* 14px */
@@ -29,6 +35,12 @@
     --error: #ff5a36;
     --success: #9afd82;
     --gray: #979797;
+    --backgroundAlt1: #40a6ff;
+    --backgroundAlt2: #e2c08d;
+    --backgroundAlt3: #8bce97;
+    --backgroundAlt4: #f8af49;
+    --backgroundAlt5: #7a70b2;
+    --backgroundAlt6: #74d1ea;
   }
 }
 

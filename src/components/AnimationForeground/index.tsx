@@ -2,10 +2,8 @@
 
 import styles from "./index.module.css";
 
+import { ReactNode } from "react";
 import { motion, Variants } from "motion/react";
-
-import Info1 from "./Info1";
-import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 
 export const draw: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -22,9 +20,13 @@ export const draw: Variants = {
   },
 };
 
-export default function AnimationBackground() {
-  const { currentVideo } = useVideoCarrousel();
+type AnimationForegroundProps = {
+  children: ReactNode;
+};
 
+export default function AnimationForeground({
+  children,
+}: AnimationForegroundProps) {
   return (
     <motion.div
       key={`container-animation-background`}
@@ -34,7 +36,7 @@ export default function AnimationBackground() {
       transition={{ duration: 0.5 }}
       className={styles.container}
     >
-      <Info1 />
+      {children}
     </motion.div>
   );
 }

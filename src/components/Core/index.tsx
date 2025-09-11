@@ -7,6 +7,10 @@ import type { InfoSection } from "./Section/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 
+import Info1 from "../Animations/Info1";
+import Info2 from "../Animations/Info2";
+import Info3 from "../Animations/Info3";
+import Info4 from "../Animations/Info4";
 import VideoCarrousel from "../VideoCarrousel";
 import Section from "./Section";
 import { DARK_VIDEOS, LIGHT_VIDEOS, Sections } from "./Section/utils";
@@ -106,6 +110,12 @@ export default function Core() {
         }}
       >
         <VideoCarrousel
+          animations={[
+            <Info1 key="animation-info-1" />,
+            <Info2 key="animation-info-2" />,
+            <Info3 key="animation-info-3" />,
+            <Info4 key="animation-info-4" />,
+          ]}
           videos={theme === "dark" ? DARK_VIDEOS : LIGHT_VIDEOS}
         />
       </div>

@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 
 import { motion } from "motion/react";
 
-import { draw } from ".";
+import { draw } from "../AnimationForeground";
 import { getColor } from "@/app/globals";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 
@@ -20,7 +20,7 @@ export default function Info1() {
 
   return (
     <motion.svg
-      key={`svg-1`}
+      key={`svg-info-1`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

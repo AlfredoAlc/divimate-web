@@ -2,20 +2,22 @@
 
 import styles from "./index.module.css";
 
-import React, { useMemo, useRef } from "react";
+import React, { ReactNode, useMemo, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import AnimationBackground from "../AnimationBackground";
+import AnimationForeground from "../AnimationForeground";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 
 type VideoCarrouselProps = {
   videos: string[];
+  animations: ReactNode[];
   width?: number;
   height?: number;
 };
 
 export default function VideoCarrousel({
   videos,
+  animations,
   width = 240,
   height = 497,
 }: VideoCarrouselProps) {
@@ -34,7 +36,7 @@ export default function VideoCarrousel({
         onExitComplete={() => videoRefs[currentVideo].current?.play()}
       >
         {isAnimationVisible ? (
-          <AnimationBackground />
+          <AnimationForeground>{animations[currentVideo]}</AnimationForeground>
         ) : !isInit ? (
           <motion.div
             key={`container-${currentVideo}`}
