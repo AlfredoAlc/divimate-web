@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 
-import type { InfoSection } from "./utils";
+import type { InfoSection } from "@/utils/InfoUtils";
 
 import { useEffect } from "react";
 import {
@@ -46,7 +46,7 @@ export default function Section({
       data-scroll-ignore-fold
       data-scroll-call="scrollEvent"
     >
-      <Icon size={40} style={{ marginBottom: "16px" }} color="#5c45f5" />
+      <Icon className={styles.icon} size={40} />
       <h2
         id={`title-${id}`}
         className={styles.title}

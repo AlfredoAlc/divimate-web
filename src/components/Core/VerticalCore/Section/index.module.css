@@ -2,20 +2,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  height: 100vh;
+  align-items: center;
+  min-height: 100vh;
   padding: 8px;
 }
 
+.icon {
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
 .title {
-  text-align: right;
   margin-bottom: 32px;
+  text-align: center;
 }
 
 .subtitle {
-  text-align: right;
+  text-align: center;
   line-height: 2;
-  padding-left: 35%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .extraContainer {

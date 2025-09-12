@@ -1,11 +1,8 @@
 "use client";
 
-import styles from "./index.module.css";
-
 import React, { ReactNode, useMemo, useRef } from "react";
-import { AnimatePresence, motion } from "motion/react";
 
-import AnimationForeground from "../AnimationForeground";
+import AnimatedVideo from "./AnimatedVideo";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 
 type VideoCarrouselProps = {
@@ -32,35 +29,16 @@ export default function VideoCarrousel({
 
   return (
     <div style={{ width, height, position: "relative" }}>
-      <AnimatePresence
-        onExitComplete={() => videoRefs[currentVideo].current?.play()}
-      >
-        {isAnimationVisible ? (
-          <AnimationForeground>{animations[currentVideo]}</AnimationForeground>
-        ) : !isInit ? (
-          <motion.div
-            key={`container-${currentVideo}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className={styles.container}
-            style={{ width, height }}
-          >
-            {videoRefs.map((ref, i) => (
-              <video
-                key={i}
-                ref={ref}
-                src={videos[currentVideo]}
-                loop
-                muted
-                playsInline
-                className={styles.videoStyle}
-              />
-            ))}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {videoRefs.map((ref, i) => (
+        <AnimatedVideo
+          key={i}
+          ref={ref}
+          src={videos[currentVideo]}
+          animation={animations[currentVideo]}
+          isInit={isInit}
+          isAnimationVisible={isAnimationVisible}
+        />
+      ))}
     </div>
   );
 }
