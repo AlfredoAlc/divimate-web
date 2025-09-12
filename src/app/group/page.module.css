@@ -94,9 +94,9 @@
   inset: 0;
   background: linear-gradient(
     270deg,
-    var(--backgroundAlt2),
-    var(--backgroundAlt5),
-    var(--backgroundAlt3)
+    var(--backgroundAlt1),
+    var(--backgroundAlt4),
+    var(--backgroundAlt6)
   );
   background-size: 600% 600%;
   animation: gradient-x 20s ease infinite;

@@ -1,10 +1,9 @@
 import styles from "./page.module.css";
-import Core from "@/components/Core";
+import GroupsHero from "@/components/GroupsHero";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
 import { VideoCarrouselProvider } from "@/contexts/VideoCarrouselProvider";
 
-export default function Home() {
+export default function GroupPage() {
   return (
     <div className={styles.page}>
       <VideoCarrouselProvider>
@@ -13,12 +12,13 @@ export default function Home() {
             minHeight: "100vh",
             width: "1000px",
             padding: "8px",
+            position: "relative",
           }}
         >
           <div className={styles.gradientBackground} />
           <Header />
-          <Hero />
-          <Core />
+          <GroupsHero />
+          {/*<Core />*/}
         </main>
       </VideoCarrouselProvider>
     </div>
