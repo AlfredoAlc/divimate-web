@@ -7,19 +7,16 @@ import type { InfoSection } from "@/utils/InfoUtils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 
-import Info1 from "../../Animations/Info1";
-import Info2 from "../../Animations/Info2";
-import Info3 from "../../Animations/Info3";
-import Info4 from "../../Animations/Info4";
+import { CoreProps } from "..";
 import VideoCarrousel from "../../VideoCarrousel";
 import Section from "./Section";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
-import useTheme from "@/hooks/useTheme";
-import { DARK_VIDEOS, LIGHT_VIDEOS, Sections } from "@/utils/InfoUtils";
 
-export default function HorizontalCore() {
-  const theme = useTheme();
-
+export default function HorizontalCore({
+  sections,
+  videos,
+  animations,
+}: CoreProps) {
   const { handleChangeVideo } = useVideoCarrousel();
 
   const isLeaving = useRef(false);
@@ -108,18 +105,10 @@ export default function HorizontalCore() {
           width,
         }}
       >
-        <VideoCarrousel
-          animations={[
-            <Info1 key="animation-info-1" />,
-            <Info2 key="animation-info-2" />,
-            <Info3 key="animation-info-3" />,
-            <Info4 key="animation-info-4" />,
-          ]}
-          videos={theme === "dark" ? DARK_VIDEOS : LIGHT_VIDEOS}
-        />
+        <VideoCarrousel animations={animations} videos={videos} />
       </div>
       <div data-scroll-container style={{ flex: 1 }}>
-        {Sections.map(renderItems)}
+        {sections.map(renderItems)}
       </div>
     </div>
   );

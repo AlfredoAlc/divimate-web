@@ -2,14 +2,20 @@
 
 import styles from "./index.module.css";
 
+import type { InfoSection } from "@/utils/InfoUtils";
+
 import { useCallback, useEffect } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 
+import { CoreProps } from "..";
 import Section from "./Section";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
-import { InfoSection, Sections } from "@/utils/InfoUtils";
 
-export default function VerticalCore() {
+export default function VerticalCore({
+  sections,
+  videos,
+  animations,
+}: CoreProps) {
   const { handleChangeVideo } = useVideoCarrousel();
 
   const handleScrollVideoEvent = useCallback(
@@ -43,13 +49,21 @@ export default function VerticalCore() {
   }, [handleScrollVideoEvent]);
 
   const renderItems = useCallback(
-    (item: InfoSection) => <Section key={item.id} {...item} />,
-    [],
+    (item: InfoSection, i: number) => (
+      <Section
+        key={item.id}
+        {...item}
+        index={i}
+        video={videos[i]}
+        animation={animations[i]}
+      />
+    ),
+    [videos, animations],
   );
 
   return (
     <div className={styles.container} data-scroll-container>
-      {Sections.map(renderItems)}
+      {sections.map(renderItems)}
     </div>
   );
 }

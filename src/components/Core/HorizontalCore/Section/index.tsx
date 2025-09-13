@@ -3,32 +3,14 @@ import styles from "./index.module.css";
 import type { InfoSection } from "@/utils/InfoUtils";
 
 import { useEffect } from "react";
-import {
-  Bug,
-  ReceiptText,
-  SlidersHorizontal,
-  Users,
-  WifiOff,
-} from "lucide-react";
 
 export default function Section({
   id,
   title,
   subtitle,
-  icon,
+  Icon,
   extra,
 }: InfoSection) {
-  const Icon =
-    icon === "ReceiptText"
-      ? ReceiptText
-      : icon === "Users"
-        ? Users
-        : icon === "SlidersHorizontal"
-          ? SlidersHorizontal
-          : icon === "WifiOff"
-            ? WifiOff
-            : Bug;
-
   useEffect(() => {
     addEventListener("progressEvent", (e: Event) => {
       const { target, progress } = (e as CustomEvent).detail;

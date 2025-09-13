@@ -101,7 +101,7 @@
   background-size: 600% 600%;
   animation: gradient-x 20s ease infinite;
   z-index: -2;
-  height: 55%;
+  height: 370px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
