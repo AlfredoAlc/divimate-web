@@ -46,6 +46,33 @@
   line-height: 2;
   padding-right: 35%;
 }
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 12s ease infinite;
+}
+
+.gradientBackground {
+  background: linear-gradient(
+    270deg,
+    var(--backgroundAlt2),
+    var(--backgroundAlt5),
+    var(--backgroundAlt3)
+  );
+  background-size: 600% 600%;
+  animation: gradient-x 20s ease infinite;
+  z-index: -2;
+  border-radius: 12px;
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   .innerImageContainer {
@@ -55,9 +82,12 @@
 
 @media (max-width: 768px) {
   .container {
+    margin-top: 0px;
     flex-direction: column;
+    padding-bottom: 32px;
   }
   .playContainer {
+    margin-top: 16px;
     margin-bottom: 32px;
   }
 }

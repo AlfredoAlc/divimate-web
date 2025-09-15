@@ -19,8 +19,37 @@
   line-height: 2;
 }
 
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 12s ease infinite;
+}
+
+.gradientBackground {
+  background: linear-gradient(
+    270deg,
+    var(--backgroundAlt1),
+    var(--backgroundAlt4),
+    var(--backgroundAlt6)
+  );
+  background-size: 600% 600%;
+  animation: gradient-x 20s ease infinite;
+  z-index: -2;
+  border-radius: 12px;
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    margin-top: 0px;
   }
 }

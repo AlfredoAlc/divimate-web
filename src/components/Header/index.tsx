@@ -15,10 +15,13 @@ export default function Header() {
         <p className={`${racingSansOne.className} ${styles.diviText}`}>Divi</p>
         <p className={`${racingSansOne.className} ${styles.mateText}`}>Mate</p>
       </Link>
-      <div className={styles.optionContainer}>
-        <p>Option 1</p>
+      <Link className={styles.optionContainer} href={"/privacy-policy"}>
+        <p>Features</p>
         <ChevronDown style={{ marginLeft: "4px" }} size={16} />
-      </div>
+      </Link>
+      <Link className={styles.optionContainer} href={"/privacy-policy"}>
+        <p>Privacy policy</p>
+      </Link>
     </div>
   );
 }

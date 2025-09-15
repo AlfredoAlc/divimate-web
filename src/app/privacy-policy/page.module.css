@@ -1,0 +1,9 @@
+.paragraph {
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.link {
+  color: var(--grayAzure);
+  text-decoration: underline;
+}
