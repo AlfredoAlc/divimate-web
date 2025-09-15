@@ -35,15 +35,16 @@ export default function HorizontalCore({
     (e: Event) => {
       const { target, way } = (e as CustomEvent).detail;
 
-      if (target.id === "info-1")
-        isLeaving.current = way === "enter" && isFixed;
+      const index = sections.findIndex((s) => s.id === target.id);
 
-      if (target.id === "info-2") {
+      if (index === 0) isLeaving.current = way === "enter" && isFixed;
+
+      if (index === 1) {
         setIsFixed(way === "enter" || !isLeaving.current);
         updateWidth();
       }
     },
-    [updateWidth, isLeaving, isFixed],
+    [updateWidth, isLeaving, isFixed, sections],
   );
 
   const handleScrollTitleEvent = useCallback(
@@ -51,12 +52,12 @@ export default function HorizontalCore({
       const { target, way } = (e as CustomEvent).detail;
 
       if (way === "enter") {
-        const idArray = target.id.split("-");
-        const index = Number(idArray[idArray.length - 1]) - 1;
+        const targetId = target.id.replace("title-", "");
+        const index = sections.findIndex((s) => s.id === targetId);
         handleChangeVideo(index);
       }
     },
-    [handleChangeVideo],
+    [handleChangeVideo, sections],
   );
 
   useEffect(() => {
@@ -88,6 +89,18 @@ export default function HorizontalCore({
     window.addEventListener("resize", updateWidth);
     return () => window.removeEventListener("resize", updateWidth);
   }, [updateWidth]);
+
+  useEffect(() => {
+    if (window.location.hash && !isLeaving.current) {
+      const index = sections.findIndex(
+        (s) => s.id === window.location.hash.split("#")[1],
+      );
+      handleChangeVideo(index);
+      setIsFixed(true);
+      updateWidth();
+      isLeaving.current = true;
+    }
+  }, [handleChangeVideo, updateWidth, sections]);
 
   const renderItems = useCallback(
     (item: InfoSection) => <Section key={item.id} {...item} />,

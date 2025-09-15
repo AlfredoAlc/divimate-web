@@ -23,7 +23,7 @@ export default function Info4() {
 
   return (
     <motion.svg
-      key={`svg-info-4`}
+      key={`svg-wifi-off`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

@@ -1,6 +1,12 @@
+.container {
+  padding: 16px;
+  margin-top: 16px;
+}
+
 .paragraph {
   text-align: justify;
   line-height: 1.5;
+  padding-bottom: 18px;
 }
 
 .link {

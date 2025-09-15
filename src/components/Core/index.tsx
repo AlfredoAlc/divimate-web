@@ -1,11 +1,11 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { InfoSection } from "@/utils/InfoUtils";
+import type { ReactNode } from "react";
 
 import HorizontalCore from "./HorizontalCore";
 import VerticalCore from "./VerticalCore";
 import useScreenWidth from "@/hooks/useScreenWidth";
-import { InfoSection } from "@/utils/InfoUtils";
 
 export type CoreProps = {
   sections: InfoSection[];

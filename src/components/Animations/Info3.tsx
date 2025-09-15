@@ -17,7 +17,7 @@ export default function Info3() {
 
   return (
     <motion.svg
-      key={`svg-info-3`}
+      key={`svg-split-expenses`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

@@ -23,10 +23,10 @@ export default function Home() {
           <Core
             videos={theme === "dark" ? DARK_VIDEOS : LIGHT_VIDEOS}
             animations={[
-              <Info1 key="animation-info-1" />,
-              <Info2 key="animation-info-2" />,
-              <Info3 key="animation-info-3" />,
-              <Info4 key="animation-info-4" />,
+              <Info1 key="animation-balances" />,
+              <Info2 key="animation-group-expenses" />,
+              <Info3 key="animation-split-expenses" />,
+              <Info4 key="animation-wifi-off" />,
             ]}
             sections={Sections}
           />

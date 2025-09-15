@@ -23,12 +23,12 @@ export default function VerticalCore({
       const { target, way } = (e as CustomEvent).detail;
 
       if (way === "enter") {
-        const idArray = target.id.split("-");
-        const index = Number(idArray[3]) - 1;
+        const targetId = target.id.replace("video-container-", "");
+        const index = sections.findIndex((s) => s.id === targetId);
         handleChangeVideo(index);
       }
     },
-    [handleChangeVideo],
+    [handleChangeVideo, sections],
   );
 
   useEffect(() => {

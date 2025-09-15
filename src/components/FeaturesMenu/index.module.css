@@ -1,0 +1,22 @@
+.container {
+  position: absolute;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--background);
+}
+
+.optionContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  align-items: center;
+  margin-right: 40px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  color: var(--accent);
+  margin-right: 32px;
+}

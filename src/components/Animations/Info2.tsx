@@ -18,7 +18,7 @@ export default function Info2() {
 
   return (
     <motion.svg
-      key={`svg-info-2`}
+      key={`svg-group-expenses`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

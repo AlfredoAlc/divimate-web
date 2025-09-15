@@ -16,7 +16,7 @@ export default function GroupInfo1() {
 
   return (
     <motion.svg
-      key={`svg-info-2`}
+      key={`svg-info-1`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

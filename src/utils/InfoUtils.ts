@@ -20,14 +20,14 @@ export type InfoSection = {
 
 export const Sections: InfoSection[] = [
   {
-    id: "info-1",
+    id: "balances",
     title: "Track what everyone owes",
     subtitle:
       "See the balances for all your friends in one screen. If multiple currencies balances are available toggle the currency balance from the header.",
     Icon: ReceiptText,
   },
   {
-    id: "info-2",
+    id: "group-expenses",
     title: "Group expenses",
     subtitle:
       "Create groups for any purpose, invite your friends and start adding expenses. Review any expense and see clear balances.",
@@ -35,14 +35,14 @@ export const Sections: InfoSection[] = [
     extra: "see more",
   },
   {
-    id: "info-3",
+    id: "split-expenses",
     title: "Split expenses your way",
     subtitle:
       "You have the flexibility to divide costs however you need. Choose from equal shares, exact amounts, percentages, itemized shares, or adjustments to make sure everyone pays their fair part.",
     Icon: SlidersHorizontal,
   },
   {
-    id: "info-4",
+    id: "wifi-off",
     title: "Works offline",
     subtitle:
       "No connection. No problem, continue adding expenses it'll sync later.",

@@ -20,7 +20,7 @@ export default function Info1() {
 
   return (
     <motion.svg
-      key={`svg-info-1`}
+      key={`svg-balances`}
       width="240"
       height="497"
       viewBox="0 0 240 497"

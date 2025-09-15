@@ -12,8 +12,8 @@ export default function PrivacyPolicy() {
     <div className="page">
       <main>
         <Header />
-        <div>
-          <p>
+        <div className={styles.container}>
+          <p className={styles.paragraph}>
             Effective Date: <strong>March, 2025</strong>
           </p>
           <p className={styles.paragraph}>
