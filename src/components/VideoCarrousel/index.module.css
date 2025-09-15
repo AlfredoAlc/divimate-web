@@ -6,7 +6,6 @@
     linear-gradient(#111, #111) padding-box,
     linear-gradient(135deg, #000 0%, #444 25%, #111 50%, #666 75%, #000 100%)
       border-box;
-  color: var(--background);
 }
 
 .videoStyle {

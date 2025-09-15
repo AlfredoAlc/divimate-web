@@ -19,7 +19,7 @@ export default function Info4() {
   const backgroundAlt3 = getColor("backgroundAlt3");
   const backgroundAlt5 = getColor("backgroundAlt5");
 
-  const { setIsAnimationVisible } = useVideoCarrousel();
+  const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
 
   return (
     <motion.svg
@@ -30,6 +30,7 @@ export default function Info4() {
       initial="hidden"
       animate="visible"
       className={styles.container}
+      onAnimationStart={() => setIsInit(false)}
       onAnimationComplete={() => setIsAnimationVisible(false)}
     >
       {/*border*/}

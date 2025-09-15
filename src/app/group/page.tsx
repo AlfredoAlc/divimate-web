@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
+import GroupInfo1 from "@/components/Animations/GroupInfo1";
 import Core from "@/components/Core";
 import GroupsHero from "@/components/GroupsHero";
 import Header from "@/components/Header";
@@ -31,7 +32,7 @@ export default function GroupPage() {
           <GroupsHero />
           <Core
             videos={theme === "dark" ? DARK_GROUP_VIDEOS : LIGHT_GROUP_VIDEOS}
-            animations={[]}
+            animations={[<GroupInfo1 key="group-info-1" />]}
             sections={GroupSections}
           />
         </main>

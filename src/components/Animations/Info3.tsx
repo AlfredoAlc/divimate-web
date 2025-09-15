@@ -13,7 +13,7 @@ export default function Info3() {
   const success = getColor("success");
   const gray = getColor("gray");
 
-  const { setIsAnimationVisible } = useVideoCarrousel();
+  const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
 
   return (
     <motion.svg
@@ -24,6 +24,7 @@ export default function Info3() {
       initial="hidden"
       animate="visible"
       className={styles.container}
+      onAnimationStart={() => setIsInit(false)}
       onAnimationComplete={() => setIsAnimationVisible(false)}
     >
       {/*border*/}

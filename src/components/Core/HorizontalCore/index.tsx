@@ -52,7 +52,7 @@ export default function HorizontalCore({
 
       if (way === "enter") {
         const idArray = target.id.split("-");
-        const index = Number(idArray[2]) - 1;
+        const index = Number(idArray[idArray.length - 1]) - 1;
         handleChangeVideo(index);
       }
     },
