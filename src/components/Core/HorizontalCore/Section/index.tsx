@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import type { InfoSection } from "@/utils/InfoUtils";
 
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Section({
   id,
@@ -40,7 +41,7 @@ export default function Section({
       </h2>
       <p className={styles.subtitle}>{subtitle}</p>
       {extra && (
-        <a
+        <Link
           href="/group"
           className={styles.extraContainer}
           data-scroll
@@ -48,7 +49,7 @@ export default function Section({
           data-scroll-event-progress="progressEvent"
         >
           See more groups features
-        </a>
+        </Link>
       )}
     </div>
   );

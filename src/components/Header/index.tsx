@@ -1,7 +1,8 @@
+import styles from "./index.module.css";
+
 import { ChevronDown } from "lucide-react";
 import { Racing_Sans_One } from "next/font/google";
-
-import styles from "./index.module.css";
+import Link from "next/link";
 
 const racingSansOne = Racing_Sans_One({
   weight: "400",
@@ -10,10 +11,10 @@ const racingSansOne = Racing_Sans_One({
 export default function Header() {
   return (
     <div className={styles.container}>
-      <div className={styles.brandContainer}>
+      <Link className={styles.brandContainer} href="/">
         <p className={`${racingSansOne.className} ${styles.diviText}`}>Divi</p>
         <p className={`${racingSansOne.className} ${styles.mateText}`}>Mate</p>
-      </div>
+      </Link>
       <div className={styles.optionContainer}>
         <p>Option 1</p>
         <ChevronDown style={{ marginLeft: "4px" }} size={16} />

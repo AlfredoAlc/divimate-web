@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import type { InfoSection } from "@/utils/InfoUtils";
 
 import { ReactNode, useEffect, useRef } from "react";
+import Link from "next/link";
 
 import AnimatedVideo from "@/components/VideoCarrousel/AnimatedVideo";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
@@ -41,7 +42,7 @@ export default function Section({
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.subtitle}>{subtitle}</p>
       {extra && (
-        <a
+        <Link
           href="/group"
           className={styles.extraContainer}
           data-scroll
@@ -49,7 +50,7 @@ export default function Section({
           data-scroll-event-progress="progressEvent"
         >
           See more groups features
-        </a>
+        </Link>
       )}
       <div
         id={`video-container-${id}`}
