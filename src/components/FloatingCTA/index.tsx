@@ -15,9 +15,15 @@ export default function FloatingCTA() {
       const { progress } = (e as CustomEvent).detail;
       if (!divRef.current) return;
 
-      const scale = 0.5 + progress * 0.5;
-      divRef.current.style.transform = `scale(${scale})`;
-      divRef.current.style.opacity = String(progress);
+      if (progress < 0.5) {
+        divRef.current.style.transform = "scale(0.5)";
+        divRef.current.style.opacity = "0";
+      } else {
+        const normalized = (progress - 0.5) / 0.5;
+        const scale = 0.5 + normalized * 0.5;
+        divRef.current.style.transform = `scale(${scale})`;
+        divRef.current.style.opacity = String(normalized);
+      }
     };
 
     window.addEventListener("progressHeroEvent", handler);
@@ -31,7 +37,9 @@ export default function FloatingCTA() {
         position: "fixed",
         bottom: screenSize === "small" ? 30 : 60,
         right: screenSize === "small" ? 30 : 60,
+        transform: "scale(0.5)",
         opacity: 0,
+        transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
       }}
     >
       <a href="https://play.google.com/store/apps/details?id=com.alws.divimate">
