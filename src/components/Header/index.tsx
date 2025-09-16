@@ -28,15 +28,18 @@ export default function Header() {
         }}
       >
         <div className={styles.optionContainer} style={{ padding: 0 }}>
-          <p>Features</p>
-          <ChevronDown style={{ marginLeft: "4px" }} size={16} />
+          <p style={{ color: "white" }}>Features</p>
+          <ChevronDown
+            style={{ marginLeft: "4px", color: "white" }}
+            size={16}
+          />
         </div>
         {isFeaturesVisible && (
           <FeaturesMenu setIsVisibleAction={setIsFeaturesVisible} />
         )}
       </div>
       <Link className={styles.optionContainer} href={"/privacy-policy"}>
-        <p>Privacy policy</p>
+        <p style={{ color: "white" }}>Privacy policy</p>
       </Link>
     </div>
   );

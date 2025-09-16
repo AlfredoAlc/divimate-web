@@ -18,8 +18,8 @@ export default function ComingSoon() {
           height={54}
         />
         <div className={styles.webContainer}>
-          <Globe size={34} />
-          <span style={{ marginLeft: 16 }}>Web</span>
+          <Globe size={34} color="white" />
+          <span style={{ marginLeft: 16, color: "white" }}>Web</span>
         </div>
       </div>
     </div>

@@ -39,11 +39,13 @@
 
 .heading {
   margin-bottom: 32px;
+  color: white;
 }
 
 .subHeading {
   line-height: 2;
   padding-right: 35%;
+  color: white;
 }
 .animate-gradient-x {
   background-size: 200% 200%;

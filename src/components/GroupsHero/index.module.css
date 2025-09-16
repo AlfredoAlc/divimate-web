@@ -19,10 +19,12 @@
 
 .heading {
   margin-bottom: 32px;
+  color: white;
 }
 
 .subHeading {
   line-height: 2;
+  color: white;
 }
 
 .animate-gradient-x {
