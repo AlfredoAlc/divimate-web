@@ -8,8 +8,8 @@ import Info3 from "@/components/Animations/Info3";
 import Info4 from "@/components/Animations/Info4";
 import Core from "@/components/Core";
 import FloatingCTA from "@/components/FloatingCTA";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import Outro from "@/components/Outro";
 import { VideoCarrouselProvider } from "@/contexts/VideoCarrouselProvider";
 import useTheme from "@/hooks/useTheme";
 import { DARK_VIDEOS, LIGHT_VIDEOS, Sections } from "@/utils/InfoUtils";
@@ -33,7 +33,7 @@ export default function Home() {
             sections={Sections}
           />
           <FloatingCTA />
-          <Footer />
+          <Outro />
         </main>
       </VideoCarrouselProvider>
     </div>
