@@ -7,6 +7,7 @@ import Info2 from "@/components/Animations/Info2";
 import Info3 from "@/components/Animations/Info3";
 import Info4 from "@/components/Animations/Info4";
 import Core from "@/components/Core";
+import FloatingCTA from "@/components/FloatingCTA";
 import Hero from "@/components/Hero";
 import { VideoCarrouselProvider } from "@/contexts/VideoCarrouselProvider";
 import useTheme from "@/hooks/useTheme";
@@ -30,6 +31,7 @@ export default function Home() {
             ]}
             sections={Sections}
           />
+          <FloatingCTA />
         </main>
       </VideoCarrouselProvider>
     </div>

@@ -6,7 +6,11 @@ import Header from "../Header";
 
 export default function Hero() {
   return (
-    <div className={styles.gradientBackground}>
+    <div
+      className={styles.gradientBackground}
+      data-scroll
+      data-scroll-event-progress="progressHeroEvent"
+    >
       <Header />
       <div className={styles.container}>
         <div className={styles.textContainer}>

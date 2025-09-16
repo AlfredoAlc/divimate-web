@@ -11,6 +11,12 @@
   padding: 16px;
 }
 
+.playContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .heading {
   margin-bottom: 32px;
 }
