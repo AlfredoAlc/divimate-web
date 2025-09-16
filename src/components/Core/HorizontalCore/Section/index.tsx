@@ -27,6 +27,7 @@ export default function Section({
       data-scroll
       data-scroll-repeat
       data-scroll-ignore-fold
+      data-scroll-position="start,end"
       data-scroll-call="scrollEvent"
     >
       <Icon className={styles.icon} size={40} />

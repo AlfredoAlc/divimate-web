@@ -19,7 +19,7 @@ export default function HorizontalCore({
 }: CoreProps) {
   const { handleChangeVideo } = useVideoCarrousel();
 
-  const isLeaving = useRef(false);
+  const currentHash = useRef<string>(null);
 
   const [isFixed, setIsFixed] = useState(false);
   const [width, setWidth] = useState(0);
@@ -27,24 +27,25 @@ export default function HorizontalCore({
   const updateWidth = useCallback(() => {
     const el = document.getElementById("fixed-container");
     if (el) setWidth(el.clientWidth);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFixed]);
+  }, []);
 
   const handleScrollEvent = useCallback(
     (e: Event) => {
-      const { target, way } = (e as CustomEvent).detail;
+      const { target, way, from } = (e as CustomEvent).detail;
 
       const index = sections.findIndex((s) => s.id === target.id);
 
-      if (index === 0) isLeaving.current = way === "enter" && isFixed;
-
-      if (index === 1) {
-        setIsFixed(way === "enter" || !isLeaving.current);
-        updateWidth();
+      if (index === 1 && from === "start") {
+        if (way === "enter") {
+          //updateWidth();
+          setIsFixed(true);
+        }
+        if (way === "leave") {
+          setIsFixed(false);
+        }
       }
     },
-    [updateWidth, isLeaving, isFixed, sections],
+    [sections],
   );
 
   const handleScrollTitleEvent = useCallback(
@@ -91,16 +92,16 @@ export default function HorizontalCore({
   }, [updateWidth]);
 
   useEffect(() => {
-    if (window.location.hash && !isLeaving.current) {
-      const index = sections.findIndex(
-        (s) => s.id === window.location.hash.split("#")[1],
-      );
-      handleChangeVideo(index);
+    const { hash } = window.location;
+    const hashValue = hash?.split("#")?.[1];
+
+    if (hashValue && hashValue !== currentHash.current) {
+      const index = sections.findIndex((s) => s.id === hashValue);
       setIsFixed(true);
-      updateWidth();
-      isLeaving.current = true;
+      handleChangeVideo(index);
+      currentHash.current = hashValue;
     }
-  }, [handleChangeVideo, updateWidth, sections]);
+  }, [handleChangeVideo, sections, currentHash]);
 
   const renderItems = useCallback(
     (item: InfoSection) => <Section key={item.id} {...item} />,
@@ -109,16 +110,17 @@ export default function HorizontalCore({
 
   return (
     <div className={styles.container}>
-      <div id="fixed-container" style={{ flex: isFixed ? 1 : 0 }} />
-      <div
-        className={styles.animationsContainer}
-        style={{
-          position: isFixed ? "fixed" : "relative",
-          top: isFixed ? 0 : undefined,
-          width,
-        }}
-      >
-        <VideoCarrousel animations={animations} videos={videos} />
+      <div id="fixed-container" style={{ flex: 1 }}>
+        <div
+          className={styles.animationsContainer}
+          style={{
+            position: isFixed ? "fixed" : "relative",
+            top: 0,
+            width,
+          }}
+        >
+          <VideoCarrousel animations={animations} videos={videos} />
+        </div>
       </div>
       <div data-scroll-container style={{ flex: 1 }}>
         {sections.map(renderItems)}
