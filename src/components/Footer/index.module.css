@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex: 1;
+  padding: 8;
+  margin-bottom: 16;
+  align-items: center;
+}
+
+.text {
+  font-size: var(--fs-sm);
+  margin-right: 16px;
+}
+
+.contactOptions {
+  position: absolute;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--background);
+}
