@@ -25,7 +25,7 @@ export default function FloatingCTA() {
     }
   }, []);
 
-  const handleProgressFooterEvent = useCallback((e: Event) => {
+  const handleProgressOutroEvent = useCallback((e: Event) => {
     const { progress } = (e as CustomEvent).detail;
     if (!divRef.current) return;
 
@@ -44,10 +44,10 @@ export default function FloatingCTA() {
   }, [handleProgressEvent]);
 
   useEffect(() => {
-    addEventListener("progressFooterEvent", handleProgressFooterEvent);
+    addEventListener("progressOutroEvent", handleProgressOutroEvent);
     return () =>
-      removeEventListener("progressFooterEvent", handleProgressFooterEvent);
-  }, [handleProgressFooterEvent]);
+      removeEventListener("progressOutroEvent", handleProgressOutroEvent);
+  }, [handleProgressOutroEvent]);
 
   return (
     <div

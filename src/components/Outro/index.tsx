@@ -2,12 +2,12 @@ import styles from "./index.module.css";
 
 import Image from "next/image";
 
-export default function Footer() {
+export default function Outro() {
   return (
     <div
       className={styles.container}
       data-scroll
-      data-scroll-event-progress="progressFooterEvent"
+      data-scroll-event-progress="progressOutroEvent"
     >
       <h1 className={styles.title}>
         Ready to split expenses? Download DiviMate today.
