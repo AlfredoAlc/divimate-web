@@ -22,6 +22,7 @@ export default function HorizontalCore({
   const currentHash = useRef<string>(null);
 
   const [isFixed, setIsFixed] = useState(false);
+  const [isBottom, setIsBottom] = useState(false);
   const [width, setWidth] = useState(0);
 
   const updateWidth = useCallback(() => {
@@ -36,13 +37,10 @@ export default function HorizontalCore({
       const index = sections.findIndex((s) => s.id === target.id);
 
       if (index === 1 && from === "start") {
-        if (way === "enter") {
-          //updateWidth();
-          setIsFixed(true);
-        }
-        if (way === "leave") {
-          setIsFixed(false);
-        }
+        setIsFixed(way === "enter");
+      }
+      if (index === sections.length - 2) {
+        setIsBottom(from === "end" && way === "leave");
       }
     },
     [sections],
@@ -110,12 +108,18 @@ export default function HorizontalCore({
 
   return (
     <div className={styles.container}>
-      <div id="fixed-container" style={{ flex: 1 }}>
+      <div id="fixed-container" style={{ flex: 1, position: "relative" }}>
         <div
           className={styles.animationsContainer}
           style={{
-            position: isFixed ? "fixed" : "relative",
-            top: 0,
+            position:
+              isFixed && !isBottom
+                ? "fixed"
+                : isBottom
+                  ? "absolute"
+                  : "relative",
+            top: isBottom ? undefined : 0,
+            bottom: isBottom ? 0 : undefined,
             width,
           }}
         >

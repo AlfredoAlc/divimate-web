@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 
 import useScreenWidth from "@/hooks/useScreenWidth";
@@ -10,25 +10,44 @@ export default function FloatingCTA() {
 
   const divRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const { progress } = (e as CustomEvent).detail;
-      if (!divRef.current) return;
+  const handleProgressEvent = useCallback((e: Event) => {
+    const { progress } = (e as CustomEvent).detail;
+    if (!divRef.current) return;
 
-      if (progress < 0.5) {
-        divRef.current.style.transform = "scale(0.5)";
-        divRef.current.style.opacity = "0";
-      } else {
-        const normalized = (progress - 0.5) / 0.5;
-        const scale = 0.5 + normalized * 0.5;
-        divRef.current.style.transform = `scale(${scale})`;
-        divRef.current.style.opacity = String(normalized);
-      }
-    };
-
-    window.addEventListener("progressHeroEvent", handler);
-    return () => window.removeEventListener("progressHeroEvent", handler);
+    if (progress < 0.5) {
+      divRef.current.style.transform = "scale(0.5)";
+      divRef.current.style.opacity = "0";
+    } else {
+      const normalized = (progress - 0.5) / 0.5;
+      const scale = 0.5 + normalized * 0.5;
+      divRef.current.style.transform = `scale(${scale})`;
+      divRef.current.style.opacity = String(normalized);
+    }
   }, []);
+
+  const handleProgressFooterEvent = useCallback((e: Event) => {
+    const { progress } = (e as CustomEvent).detail;
+    if (!divRef.current) return;
+
+    const maxProgress = 0.33333;
+    const normalized = Math.min(progress / maxProgress, 1);
+
+    const scale = 1 - 0.5 * normalized;
+
+    divRef.current.style.transform = `scale(${scale})`;
+    divRef.current.style.opacity = String(1 - normalized);
+  }, []);
+
+  useEffect(() => {
+    addEventListener("progressHeroEvent", handleProgressEvent);
+    return () => removeEventListener("progressHeroEvent", handleProgressEvent);
+  }, [handleProgressEvent]);
+
+  useEffect(() => {
+    addEventListener("progressFooterEvent", handleProgressFooterEvent);
+    return () =>
+      removeEventListener("progressFooterEvent", handleProgressFooterEvent);
+  }, [handleProgressFooterEvent]);
 
   return (
     <div

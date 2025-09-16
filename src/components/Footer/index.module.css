@@ -1,0 +1,15 @@
+.container {
+  height: 100vh;
+}
+
+.title {
+  text-align: center;
+  font-style: italic;
+  padding-top: 25%;
+}
+
+.playContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+}
