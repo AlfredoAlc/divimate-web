@@ -11,6 +11,7 @@ import {
 } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import { ReceiptText, SlidersHorizontal, Users, WifiOff } from "lucide-react";
+import { motion } from "motion/react";
 import { redirect } from "next/navigation";
 
 type FeaturesMenuProps = {
@@ -48,7 +49,13 @@ export default function FeaturesMenu({
   );
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      className={styles.container}
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
       <div
         className={styles.optionContainer}
         onClick={() => handleScrollTo("balances")}
@@ -78,6 +85,6 @@ export default function FeaturesMenu({
         <WifiOff className={styles.icon} />
         <p>Offline</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

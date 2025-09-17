@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  position: fixed;
+  bottom: 60;
+  right: 60;
+  transform: scale(0.5);
+  transition:
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out;
+}
+
+@media (max-width: 768px) {
+  .container {
+    bottom: 30px;
+    right: 30px;
+  }
+}

@@ -1,8 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
-import Image from "next/image";
+import styles from "./index.module.css";
 
+import { useCallback, useEffect, useRef } from "react";
+
+import GooglePlay from "../GooglePlay";
 import useScreenWidth from "@/hooks/useScreenWidth";
 
 export default function FloatingCTA() {
@@ -50,25 +52,11 @@ export default function FloatingCTA() {
   }, [handleProgressOutroEvent]);
 
   return (
-    <div
-      ref={divRef}
-      style={{
-        position: "fixed",
-        bottom: screenSize === "small" ? 30 : 60,
-        right: screenSize === "small" ? 30 : 60,
-        transform: "scale(0.5)",
-        opacity: 0,
-        transition: "transform 0.2s ease-out, opacity 0.2s ease-out",
-      }}
-    >
-      <a href="https://play.google.com/store/apps/details?id=com.alws.divimate">
-        <Image
-          src={"/images/google-play-badge.png"}
-          alt="google-play-badge"
-          width={screenSize === "small" ? 104.25 : 135}
-          height={screenSize === "small" ? 31 : 40}
-        />
-      </a>
+    <div ref={divRef} className={styles.container} style={{ opacity: 0 }}>
+      <GooglePlay
+        width={screenSize === "small" ? 104.24 : 135}
+        height={screenSize === "small" ? 31 : 40}
+      />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 
-import Image from "next/image";
-
+import GooglePlay from "../GooglePlay";
 import Header from "../Header";
 
 export default function GroupsHero() {
@@ -18,14 +17,7 @@ export default function GroupsHero() {
             roommates, or travel buddies.
           </h3>
           <div className={styles.playContainer}>
-            <a href="https://play.google.com/store/apps/details?id=com.alws.divimate">
-              <Image
-                src={"/images/google-play-badge.png"}
-                alt="google-play-badge"
-                width={162}
-                height={48}
-              />
-            </a>
+            <GooglePlay />
           </div>
         </div>
       </div>

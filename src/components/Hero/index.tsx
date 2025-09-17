@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 import Image from "next/image";
 
 import ComingSoon from "../ComingSoon";
+import GooglePlay from "../GooglePlay";
 import Header from "../Header";
 import useTheme from "@/hooks/useTheme";
 
@@ -30,14 +31,7 @@ export default function Hero() {
               friends.
             </p>
             <div className={styles.playContainer}>
-              <a href="https://play.google.com/store/apps/details?id=com.alws.divimate">
-                <Image
-                  src={"/images/google-play-badge.png"}
-                  alt="google-play-badge"
-                  width={162}
-                  height={48}
-                />
-              </a>
+              <GooglePlay />
             </div>
           </div>
           <div className={styles.imageContainer}>
@@ -48,6 +42,7 @@ export default function Hero() {
                 alt="group-expense-list-divimate"
                 width={270}
                 height={581}
+                priority={true}
               />
             </div>
           </div>
