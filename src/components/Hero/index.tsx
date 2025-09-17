@@ -1,11 +1,16 @@
+"use client";
+
 import styles from "./index.module.css";
 
 import Image from "next/image";
 
 import ComingSoon from "../ComingSoon";
 import Header from "../Header";
+import useTheme from "@/hooks/useTheme";
 
 export default function Hero() {
+  const theme = useTheme();
+
   return (
     <div
       className={styles.gradientBackground}
@@ -39,10 +44,10 @@ export default function Hero() {
             <div className={styles.innerImageContainer}>
               <Image
                 className={styles.shadow}
-                src={"/images/group-expenses.png"}
-                alt="divimate-app"
-                width={240}
-                height={539}
+                src={`/images/landing-${theme}.png`}
+                alt="group-expense-list-divimate"
+                width={270}
+                height={581}
               />
             </div>
           </div>
