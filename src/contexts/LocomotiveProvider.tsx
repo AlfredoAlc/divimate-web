@@ -9,6 +9,9 @@ import {
   useState,
 } from "react";
 import LocomotiveScroll from "locomotive-scroll";
+import { usePathname } from "next/navigation";
+
+import useScreenWidth from "@/hooks/useScreenWidth";
 
 export type LocomotiveProviderProps = { children: ReactNode };
 export type LocomotiveProps = {
@@ -20,6 +23,8 @@ const LocomotiveContext = createContext<LocomotiveProps>({
 });
 
 export const LocomotiveProvider = ({ children }: LocomotiveProviderProps) => {
+  const screen = useScreenWidth();
+  const pathname = usePathname();
   const [scroll, setScroll] = useState<LocomotiveScroll | null>(null);
 
   useEffect(() => {
@@ -30,7 +35,7 @@ export const LocomotiveProvider = ({ children }: LocomotiveProviderProps) => {
     setScroll(currentScroll);
 
     return () => currentScroll.destroy();
-  }, []);
+  }, [pathname, screen]);
 
   const value = useMemo(() => ({ scroll }), [scroll]);
 

@@ -1,0 +1,41 @@
+.container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.innerContainer {
+  height: 100vh;
+  width: 50vw;
+  padding: 16px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: var(--background);
+}
+
+.titleContainer {
+  padding: 8px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.optionContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  margin-left: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  color: var(--accent);
+  margin-right: 16px;
+}

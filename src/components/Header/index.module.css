@@ -1,6 +1,8 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: row;
+  align-items: center;
   height: 66px;
   padding: 16;
   padding-top: 38px;
@@ -34,4 +36,20 @@
   color: var(--grayAzure);
   font-size: var(--fs-2xl);
   letter-spacing: 2.5;
+}
+
+.iconContainer {
+  display: flex;
+  position: absolute;
+  right: 40;
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: center;
+  }
+
+  .brandContainer {
+    margin-right: 0px;
+  }
 }
