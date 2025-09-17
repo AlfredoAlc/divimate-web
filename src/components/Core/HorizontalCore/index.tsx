@@ -5,7 +5,6 @@ import styles from "./index.module.css";
 import type { InfoSection } from "@/utils/InfoUtils";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import LocomotiveScroll from "locomotive-scroll";
 
 import { CoreProps } from "..";
 import VideoCarrousel from "../../VideoCarrousel";
@@ -58,16 +57,6 @@ export default function HorizontalCore({
     },
     [handleChangeVideo, sections],
   );
-
-  useEffect(() => {
-    const scroll = new LocomotiveScroll({
-      lenisOptions: { smoothWheel: true },
-    });
-
-    return () => {
-      scroll.destroy();
-    };
-  }, []);
 
   useEffect(() => {
     addEventListener("scrollEvent", handleScrollEvent);
@@ -126,9 +115,7 @@ export default function HorizontalCore({
           <VideoCarrousel animations={animations} videos={videos} />
         </div>
       </div>
-      <div data-scroll-container style={{ flex: 1 }}>
-        {sections.map(renderItems)}
-      </div>
+      <div style={{ flex: 1 }}>{sections.map(renderItems)}</div>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+
 import localFont from "next/font/local";
 
 import "./globals.css";
+
+import { LocomotiveProvider } from "@/contexts/LocomotiveProvider";
 
 const sfPro = localFont({
   src: [
@@ -12,6 +15,7 @@ const sfPro = localFont({
     },
   ],
   variable: "--sf-pro",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sfPro.className}>{children}</body>
+      <body className={sfPro.className}>
+        <LocomotiveProvider>{children}</LocomotiveProvider>
+      </body>
     </html>
   );
 }

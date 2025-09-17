@@ -5,7 +5,6 @@ import styles from "./index.module.css";
 import type { InfoSection } from "@/utils/InfoUtils";
 
 import { useCallback, useEffect } from "react";
-import LocomotiveScroll from "locomotive-scroll";
 
 import { CoreProps } from "..";
 import Section from "./Section";
@@ -32,16 +31,6 @@ export default function VerticalCore({
   );
 
   useEffect(() => {
-    const scroll = new LocomotiveScroll({
-      lenisOptions: { smoothWheel: true },
-    });
-
-    return () => {
-      scroll.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
     addEventListener("scrollVideoEvent", handleScrollVideoEvent);
 
     return () =>
@@ -61,9 +50,5 @@ export default function VerticalCore({
     [videos, animations],
   );
 
-  return (
-    <div className={styles.container} data-scroll-container>
-      {sections.map(renderItems)}
-    </div>
-  );
+  return <div className={styles.container}>{sections.map(renderItems)}</div>;
 }

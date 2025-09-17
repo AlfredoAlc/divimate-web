@@ -2,17 +2,12 @@
 
 import styles from "./index.module.css";
 
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
-import LocomotiveScroll from "locomotive-scroll";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { ReceiptText, SlidersHorizontal, Users, WifiOff } from "lucide-react";
 import { motion } from "motion/react";
 import { redirect } from "next/navigation";
+
+import { useLocomotive } from "@/contexts/LocomotiveProvider";
 
 type FeaturesMenuProps = {
   setIsVisibleAction: Dispatch<SetStateAction<boolean>>;
@@ -21,31 +16,17 @@ type FeaturesMenuProps = {
 export default function FeaturesMenu({
   setIsVisibleAction,
 }: FeaturesMenuProps) {
-  const scroll = useRef<LocomotiveScroll>(null);
-
-  useEffect(() => {
-    scroll.current = new LocomotiveScroll({
-      lenisOptions: { smoothWheel: true },
-    });
-
-    return () => {
-      scroll.current?.destroy();
-    };
-  }, []);
+  const { scroll } = useLocomotive();
 
   const handleScrollTo = useCallback(
     (id: string) => {
+      setIsVisibleAction(false);
+
       const target = document.getElementById(id);
-      if (target) {
-        scroll.current?.scrollTo(target, {
-          offset: 60,
-          onComplete: () => setIsVisibleAction(false),
-        });
-      } else {
-        redirect(`/#${id}`);
-      }
+      if (target) scroll?.scrollTo(target, { offset: 60 });
+      else redirect(`/#${id}`);
     },
-    [setIsVisibleAction],
+    [setIsVisibleAction, scroll],
   );
 
   return (
