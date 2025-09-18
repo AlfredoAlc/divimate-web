@@ -4,15 +4,7 @@ import localFont from "next/font/local";
 
 import "./globals.css";
 
-import Head from "next/head";
-
 import { LocomotiveProvider } from "@/contexts/LocomotiveProvider";
-import {
-  DARK_GROUP_VIDEOS,
-  DARK_VIDEOS,
-  LIGHT_GROUP_VIDEOS,
-  LIGHT_VIDEOS,
-} from "@/utils/InfoUtils";
 
 const sfPro = localFont({
   src: [
@@ -81,16 +73,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        {[
-          ...DARK_VIDEOS,
-          ...DARK_GROUP_VIDEOS,
-          ...LIGHT_VIDEOS,
-          ...LIGHT_GROUP_VIDEOS,
-        ].map((v) => (
-          <link key={v} rel="preload" as="video" href={v} type="video/mov" />
-        ))}
-      </Head>
       <body className={sfPro.className}>
         <LocomotiveProvider>{children}</LocomotiveProvider>
       </body>
