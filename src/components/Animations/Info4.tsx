@@ -5,21 +5,22 @@ import styles from "./index.module.css";
 import { motion } from "motion/react";
 
 import { draw } from "../AnimationForeground";
-import { getColor } from "@/app/globals";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
+import useTheme, { Colors } from "@/hooks/useTheme";
 
 export default function Info4() {
-  const text = getColor("text");
-  const success = getColor("success");
-  const error = getColor("error");
-  const gray = getColor("gray");
-  const grayAzure = getColor("grayAzure");
-  const backgroundAlt1 = getColor("backgroundAlt1");
-  const backgroundAlt2 = getColor("backgroundAlt2");
-  const backgroundAlt3 = getColor("backgroundAlt3");
-  const backgroundAlt5 = getColor("backgroundAlt5");
-
   const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
+  const theme = useTheme();
+
+  const text = Colors[theme]["text"];
+  const success = Colors[theme]["success"];
+  const error = Colors[theme]["error"];
+  const gray = Colors[theme]["gray"];
+  const grayAzure = Colors[theme]["grayAzure"];
+  const backgroundAlt1 = Colors[theme]["backgroundAlt1"];
+  const backgroundAlt2 = Colors[theme]["backgroundAlt2"];
+  const backgroundAlt3 = Colors[theme]["backgroundAlt3"];
+  const backgroundAlt5 = Colors[theme]["backgroundAlt5"];
 
   return (
     <motion.svg

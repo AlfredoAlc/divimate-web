@@ -5,15 +5,16 @@ import styles from "./index.module.css";
 import { motion } from "motion/react";
 
 import { draw } from "../AnimationForeground";
-import { getColor } from "@/app/globals";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
+import useTheme, { Colors } from "@/hooks/useTheme";
 
 export default function Info3() {
-  const text = getColor("text");
-  const success = getColor("success");
-  const gray = getColor("gray");
-
   const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
+  const theme = useTheme();
+
+  const text = Colors[theme]["text"];
+  const success = Colors[theme]["success"];
+  const gray = Colors[theme]["gray"];
 
   return (
     <motion.svg

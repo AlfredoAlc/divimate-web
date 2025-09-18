@@ -23,18 +23,12 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
   ) {
     const isPlaying = useRef(false);
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
 
     return (
       <AnimatePresence
         onExitComplete={() => {
-          if (
-            ref &&
-            typeof ref === "object" &&
-            ref.current &&
-            isLoaded &&
-            !isInit
-          ) {
+          if (ref && typeof ref === "object" && ref.current && !isInit) {
             ref.current
               .play()
               .then(() => (isPlaying.current = true))
@@ -68,7 +62,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               if (ref && typeof ref === "object" && ref.current) {
                 ref.current.currentTime = 0;
                 ref.current.pause();
-                setIsLoaded(true);
+                setIsFetching(false);
 
                 if (isPlaying.current) {
                   ref.current.play();
@@ -78,9 +72,9 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
             }}
           />
         </motion.div>
-        {(isAnimationVisible || !isLoaded) && (
+        {isFetching || isAnimationVisible ? (
           <AnimationForeground>{animation}</AnimationForeground>
-        )}
+        ) : null}
       </AnimatePresence>
     );
   },

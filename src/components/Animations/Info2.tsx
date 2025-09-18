@@ -5,16 +5,17 @@ import styles from "./index.module.css";
 import { motion } from "motion/react";
 
 import { draw } from "../AnimationForeground";
-import { getColor } from "@/app/globals";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
+import useTheme, { Colors } from "@/hooks/useTheme";
 
 export default function Info2() {
-  const text = getColor("text");
-  const error = getColor("error");
-  const gray = getColor("gray");
-  const grayAzure = getColor("grayAzure");
-
   const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
+  const theme = useTheme();
+
+  const text = Colors[theme]["text"];
+  const error = Colors[theme]["error"];
+  const gray = Colors[theme]["gray"];
+  const grayAzure = Colors[theme]["grayAzure"];
 
   return (
     <motion.svg

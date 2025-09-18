@@ -8,18 +8,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import SideMenu from "../SideMenu";
-import { getColor } from "@/app/globals";
+import useTheme, { Colors } from "@/hooks/useTheme";
 
 const racingSansOne = Racing_Sans_One({
   weight: "400",
 });
 
 export default function Small() {
+  const pathname = usePathname();
+  const theme = useTheme();
+
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const text = getColor("text");
-
-  const pathname = usePathname();
+  const text = Colors[theme]["text"];
 
   return (
     <div className={styles.container}>
