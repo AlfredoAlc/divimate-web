@@ -53,6 +53,12 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
             preload="auto"
             autoPlay={false}
             className={styles.videoStyle}
+            onLoadedData={() => {
+              if (ref && typeof ref === "object" && ref.current) {
+                ref.current.currentTime = 0;
+                ref.current.pause();
+              }
+            }}
           />
         </motion.div>
         {isAnimationVisible && (
