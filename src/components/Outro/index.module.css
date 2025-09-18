@@ -13,3 +13,10 @@
   justify-content: center;
   margin-top: 75px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    height: auto;
+    margin-bottom: 96px;
+  }
+}
