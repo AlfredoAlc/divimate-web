@@ -12,6 +12,7 @@ export default function GooglePlay({
   return (
     <a
       href="https://play.google.com/store/apps/details?id=com.alws.divimate"
+      target="_blank"
       style={{
         position: "relative",
         width,
