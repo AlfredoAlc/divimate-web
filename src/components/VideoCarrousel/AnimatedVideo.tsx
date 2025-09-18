@@ -48,6 +48,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               loop
               muted
               playsInline
+              preload="auto"
               className={styles.videoStyle}
             />
           </motion.div>
