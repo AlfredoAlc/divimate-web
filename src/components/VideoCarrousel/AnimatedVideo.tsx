@@ -78,7 +78,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
             }}
           />
         </motion.div>
-        {isAnimationVisible && isLoaded && (
+        {(isAnimationVisible || !isLoaded) && (
           <AnimationForeground>{animation}</AnimationForeground>
         )}
       </AnimatePresence>
