@@ -2,7 +2,7 @@
 
 import styles from "./index.module.css";
 
-import React, { forwardRef, ReactNode } from "react";
+import React, { forwardRef, ReactNode, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 import AnimationForeground from "../AnimationForeground";
@@ -21,12 +21,23 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     { animation, width = 240, height = 497, src, isInit, isAnimationVisible },
     ref,
   ) {
+    const isPlaying = useRef(false);
+
+    const [isLoaded, setIsLoaded] = useState(false);
+
     return (
       <AnimatePresence
         onExitComplete={() => {
-          if (ref && typeof ref === "object" && ref.current) {
+          if (
+            ref &&
+            typeof ref === "object" &&
+            ref.current &&
+            isLoaded &&
+            !isInit
+          ) {
             ref.current
               .play()
+              .then(() => (isPlaying.current = true))
               .catch((err) => console.log("Play video error: ", err));
           }
         }}
@@ -57,11 +68,17 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               if (ref && typeof ref === "object" && ref.current) {
                 ref.current.currentTime = 0;
                 ref.current.pause();
+                setIsLoaded(true);
+
+                if (isPlaying.current) {
+                  ref.current.play();
+                  isPlaying.current = false;
+                }
               }
             }}
           />
         </motion.div>
-        {isAnimationVisible && (
+        {isAnimationVisible && isLoaded && (
           <AnimationForeground>{animation}</AnimationForeground>
         )}
       </AnimatePresence>
