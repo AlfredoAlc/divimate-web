@@ -23,7 +23,7 @@ export default function FeaturesMenu({
       setIsVisibleAction(false);
 
       const target = document.getElementById(id);
-      if (target) scroll?.scrollTo(target, { offset: 60 });
+      if (target) scroll?.scrollTo(target);
       else redirect(`/#${id}`);
     },
     [setIsVisibleAction, scroll],

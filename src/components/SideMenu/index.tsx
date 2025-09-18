@@ -26,7 +26,7 @@ export default function SideMenu({ setIsVisibleAction }: SideMenuProps) {
       scroll?.start();
 
       const target = document.getElementById(id);
-      if (target) scroll?.scrollTo(target, { offset: 60 });
+      if (target) scroll?.scrollTo(target);
       else redirect(`/#${id}`);
     },
     [scroll],

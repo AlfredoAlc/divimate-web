@@ -46,3 +46,10 @@
   border-style: solid;
   border-color: white;
 }
+
+@media (max-width: 768px) {
+  .container {
+    border-bottom-left-radius: 12;
+    border-bottom-right-radius: 12;
+  }
+}

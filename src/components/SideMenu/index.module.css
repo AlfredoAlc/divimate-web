@@ -39,3 +39,9 @@
   color: var(--accent);
   margin-right: 16px;
 }
+
+@media (max-width: 768) {
+  .innerContainer {
+    width: 85vw;
+  }
+}

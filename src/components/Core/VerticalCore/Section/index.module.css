@@ -30,3 +30,12 @@
   color: var(--grayAzure);
   font-size: var(--fs-lg);
 }
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: flex-start;
+    min-height: auto;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+}

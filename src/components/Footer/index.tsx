@@ -37,7 +37,6 @@ export default function Footer() {
           src={"/images/youtube.png"}
           width={51}
           height={48}
-          style={{ marginRight: 14 }}
         />
       </a>
     </div>

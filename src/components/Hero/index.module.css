@@ -51,6 +51,7 @@
   padding-right: 35%;
   color: white;
 }
+
 .animate-gradient-x {
   background-size: 200% 200%;
   animation: gradient-x 12s ease infinite;
@@ -91,9 +92,15 @@
     flex-direction: column;
     padding-bottom: 32px;
   }
+
   .playContainer {
     margin-top: 16px;
     margin-bottom: 32px;
+  }
+
+  .subHeading {
+    padding-right: 0;
+    text-align: justify;
   }
 }
 

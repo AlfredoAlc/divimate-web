@@ -2,7 +2,7 @@
   display: flex;
   flex: 1;
   padding: 8;
-  margin-bottom: 16;
+  margin-bottom: 32;
   align-items: center;
 }
 
@@ -17,4 +17,14 @@
   padding: 16px;
   border-radius: 8px;
   background-color: var(--background);
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: space-around;
+  }
+
+  .text {
+    display: none;
+  }
 }

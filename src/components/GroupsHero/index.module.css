@@ -60,4 +60,8 @@
     flex-direction: column;
     margin-top: 0px;
   }
+
+  .subHeading {
+    text-align: justify;
+  }
 }

@@ -107,13 +107,11 @@ li {
 @media (max-width: 768px) {
   h1 {
     font-size: 3rem;
+    text-align: center;
   }
   h2 {
     font-size: 2rem;
-  }
-  .page {
-    padding-left: 32px;
-    padding-right: 32px;
+    text-align: center;
   }
 }
 

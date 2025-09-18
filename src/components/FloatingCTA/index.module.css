@@ -1,6 +1,7 @@
 .container {
   display: flex;
   position: fixed;
+  z-index: 2;
   bottom: 60;
   right: 60;
   transform: scale(0.5);
