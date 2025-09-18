@@ -24,35 +24,40 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     return (
       <AnimatePresence
         onExitComplete={() => {
-          if (ref && typeof ref === "object")
+          if (ref && typeof ref === "object" && ref.current) {
             ref.current
-              ?.play()
+              .play()
               .catch((err) => console.log("Play video error: ", err));
+          }
         }}
       >
-        {isAnimationVisible ? (
+        <motion.div
+          key={`container-${src}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles.container}
+          style={{
+            width,
+            height,
+            visibility: isInit || isAnimationVisible ? "hidden" : "visible",
+          }}
+        >
+          <video
+            ref={ref}
+            src={src}
+            loop
+            muted
+            playsInline
+            preload="auto"
+            autoPlay={false}
+            className={styles.videoStyle}
+          />
+        </motion.div>
+        {isAnimationVisible && (
           <AnimationForeground>{animation}</AnimationForeground>
-        ) : !isInit ? (
-          <motion.div
-            key={`container-${src}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className={styles.container}
-            style={{ width, height }}
-          >
-            <video
-              ref={ref}
-              src={src}
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className={styles.videoStyle}
-            />
-          </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
     );
   },

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createRef, ReactNode, useEffect, useMemo } from "react";
+import React, { createRef, ReactNode, useMemo } from "react";
 
 import AnimatedVideo from "./AnimatedVideo";
 import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
@@ -25,27 +25,16 @@ export default function VideoCarrousel({
     [videos],
   );
 
-  useEffect(() => {
-    videos.forEach((src) => {
-      const video = document.createElement("video");
-      video.src = src;
-      video.preload = "auto";
-      video.muted = true;
-    });
-  }, [videos]);
-
   return (
     <div style={{ width, height, position: "relative" }}>
-      {videoRefs.map((ref, i) => (
-        <AnimatedVideo
-          key={i}
-          ref={ref}
-          src={videos[currentVideo]}
-          animation={animations[currentVideo]}
-          isInit={isInit}
-          isAnimationVisible={isAnimationVisible}
-        />
-      ))}
+      <AnimatedVideo
+        key={currentVideo}
+        ref={videoRefs[currentVideo]}
+        src={videos[currentVideo]}
+        animation={animations[currentVideo]}
+        isInit={isInit}
+        isAnimationVisible={isAnimationVisible}
+      />
     </div>
   );
 }
