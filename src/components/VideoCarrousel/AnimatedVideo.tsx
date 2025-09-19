@@ -36,17 +36,12 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
 
     const handlePlay = useCallback(
       (ready?: boolean) => {
-        if (
-          ref &&
-          typeof ref === "object" &&
-          ref.current &&
-          (isVideoReady.current || ready)
-        ) {
+        if (ref && typeof ref === "object" && ref.current) {
           ref.current.currentTime = 0;
           ref.current
             .play()
             .catch((err) => console.log("Play video error: ", err));
-          setIsAnimating(false);
+          setIsAnimating(!(isVideoReady.current || ready));
         }
       },
       [ref, isVideoReady],
@@ -62,7 +57,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
           handlePlay();
         }, 1750);
       }
-    }, [isAnimationVisible, ref, handlePlay]);
+    }, [isAnimationVisible, handlePlay]);
 
     const handleLoaded = useCallback(() => {
       isVideoReady.current = true;
