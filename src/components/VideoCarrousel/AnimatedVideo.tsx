@@ -57,7 +57,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               loop
               muted
               playsInline
-              autoPlay={false}
+              //autoPlay={false}
               className={styles.videoStyle}
               poster={poster}
             />
