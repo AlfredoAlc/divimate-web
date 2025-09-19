@@ -7,12 +7,12 @@ import React, {
   ReactNode,
   useCallback,
   useEffect,
-  useRef,
   useState,
 } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 import AnimationForeground from "../AnimationForeground";
+import useTheme from "@/hooks/useTheme";
 
 type VideoCarrouselProps = {
   animation: ReactNode;
@@ -28,44 +28,30 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     { animation, width = 240, height = 497, src, poster, isAnimationVisible },
     ref,
   ) {
-    const isAnimationEnded = useRef(false);
-    const isVideoReady = useRef(false);
+    const theme = useTheme();
 
     const [isVideoVisible, setIsVideoVisible] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
 
-    const handlePlay = useCallback(
-      (ready?: boolean) => {
-        if (ref && typeof ref === "object" && ref.current) {
-          ref.current.currentTime = 0;
-          ref.current
-            .play()
-            .catch((err) => console.log("Play video error: ", err));
-          setIsAnimating(!(isVideoReady.current || ready));
-        }
-      },
-      [ref, isVideoReady],
-    );
+    const border =
+      theme === "light"
+        ? "linear-gradient(135deg, #000 0%, #444 25%, #111 50%, #666 75%, #000 100%)"
+        : "linear-gradient(135deg,#d7d7d7 0%,#f5f5f5 20%,#b0b0b0 40%,#ffffff 60%,#a0a0a0 80%,#e0e0e0 100%)";
+
+    const handlePlay = useCallback(() => {
+      if (ref && typeof ref === "object" && ref.current) {
+        ref.current.currentTime = 0;
+        ref.current
+          .play()
+          .catch((err) => console.log("Play video error: ", err));
+      }
+    }, [ref]);
 
     useEffect(() => {
-      if (isAnimationVisible) {
-        setIsAnimating(true);
-        isAnimationEnded.current = false;
-        setTimeout(() => setIsVideoVisible(true), 500);
-        setTimeout(() => {
-          isAnimationEnded.current = true;
-          handlePlay();
-        }, 1750);
-      }
-    }, [isAnimationVisible, handlePlay]);
-
-    const handleLoaded = useCallback(() => {
-      isVideoReady.current = true;
-      if (isAnimationEnded.current) handlePlay(true);
-    }, [handlePlay, isAnimationEnded]);
+      if (isAnimationVisible) setTimeout(() => setIsVideoVisible(true), 500);
+    }, [isAnimationVisible]);
 
     return (
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={handlePlay}>
         {isVideoVisible && (
           <motion.div
             key={`container-${src}`}
@@ -77,6 +63,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
             style={{
               width,
               height,
+              backgroundImage: `url(${poster}), ${border}`,
             }}
           >
             <video
@@ -87,12 +74,12 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               playsInline
               autoPlay={false}
               className={styles.videoStyle}
-              onLoadedData={handleLoaded}
-              poster={poster}
             />
           </motion.div>
         )}
-        {isAnimating && <AnimationForeground>{animation}</AnimationForeground>}
+        {isAnimationVisible && (
+          <AnimationForeground>{animation}</AnimationForeground>
+        )}
       </AnimatePresence>
     );
   },
