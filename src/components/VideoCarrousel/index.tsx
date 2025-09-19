@@ -20,7 +20,7 @@ export default function VideoCarrousel({
   width = 240,
   height = 497,
 }: VideoCarrouselProps) {
-  const { currentVideo, isInit, isAnimationVisible } = useVideoCarrousel();
+  const { currentVideo, isAnimationVisible } = useVideoCarrousel();
 
   const videoRefs = useMemo(
     () => videos.map(() => createRef<HTMLVideoElement>()),
@@ -35,7 +35,6 @@ export default function VideoCarrousel({
         src={videos[currentVideo]}
         animation={animations[currentVideo]}
         poster={posters[currentVideo]}
-        isInit={isInit}
         isAnimationVisible={isAnimationVisible}
       />
     </div>
