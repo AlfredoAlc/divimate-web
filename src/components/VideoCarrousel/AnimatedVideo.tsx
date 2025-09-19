@@ -2,7 +2,7 @@
 
 import styles from "./index.module.css";
 
-import React, { forwardRef, ReactNode, useRef, useState } from "react";
+import React, { forwardRef, ReactNode, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 import AnimationForeground from "../AnimationForeground";
@@ -21,9 +21,11 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     { animation, width = 240, height = 497, src, isInit, isAnimationVisible },
     ref,
   ) {
-    const isPlaying = useRef(false);
+    const [isVideoVisible, setIsVideoVisible] = useState(false);
 
-    const [isFetching, setIsFetching] = useState(true);
+    useEffect(() => {
+      if (isAnimationVisible) setTimeout(() => setIsVideoVisible(true), 500);
+    }, [isAnimationVisible]);
 
     return (
       <AnimatePresence
@@ -31,50 +33,37 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
           if (ref && typeof ref === "object" && ref.current && !isInit) {
             ref.current
               .play()
-              .then(() => (isPlaying.current = true))
               .catch((err) => console.log("Play video error: ", err));
           }
         }}
       >
-        <motion.div
-          key={`container-${src}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className={styles.container}
-          style={{
-            width,
-            height,
-            visibility: isAnimationVisible ? "hidden" : "visible",
-          }}
-        >
-          <video
-            ref={ref}
-            src={src}
-            loop
-            muted
-            playsInline
-            preload="auto"
-            autoPlay={false}
-            className={styles.videoStyle}
-            onLoadedData={() => {
-              if (ref && typeof ref === "object" && ref.current) {
-                ref.current.currentTime = 0;
-                ref.current.pause();
-                setIsFetching(false);
-
-                if (isPlaying.current) {
-                  ref.current.play();
-                  isPlaying.current = false;
-                }
-              }
+        {isVideoVisible && (
+          <motion.div
+            key={`container-${src}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className={styles.container}
+            style={{
+              width,
+              height,
             }}
-          />
-        </motion.div>
-        {isFetching || isAnimationVisible ? (
+          >
+            <video
+              ref={ref}
+              src={src}
+              loop
+              muted
+              playsInline
+              autoPlay={false}
+              className={styles.videoStyle}
+            />
+          </motion.div>
+        )}
+        {isAnimationVisible && (
           <AnimationForeground>{animation}</AnimationForeground>
-        ) : null}
+        )}
       </AnimatePresence>
     );
   },
