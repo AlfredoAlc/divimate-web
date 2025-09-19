@@ -9,7 +9,7 @@ import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 import useTheme, { Colors } from "@/hooks/useTheme";
 
 export default function Info4() {
-  const { setIsAnimationVisible, setIsInit } = useVideoCarrousel();
+  const { setIsAnimationVisible } = useVideoCarrousel();
   const theme = useTheme();
 
   const text = Colors[theme]["text"];
@@ -31,7 +31,6 @@ export default function Info4() {
       initial="hidden"
       animate="visible"
       className={styles.container}
-      onAnimationStart={() => setIsInit(false)}
       onAnimationComplete={() => setIsAnimationVisible(false)}
     >
       {/*border*/}

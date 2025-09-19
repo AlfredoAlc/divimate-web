@@ -14,6 +14,7 @@ import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 export default function HorizontalCore({
   sections,
   videos,
+  posters,
   animations,
 }: CoreProps) {
   const { handleChangeVideo } = useVideoCarrousel();
@@ -112,7 +113,11 @@ export default function HorizontalCore({
             width,
           }}
         >
-          <VideoCarrousel animations={animations} videos={videos} />
+          <VideoCarrousel
+            animations={animations}
+            videos={videos}
+            posters={posters}
+          />
         </div>
       </div>
       <div style={{ flex: 1 }}>{sections.map(renderItems)}</div>

@@ -64,6 +64,20 @@ export const LIGHT_VIDEOS = [
   "/videos/info-4-light.mov",
 ];
 
+export const DARK_POSTERS = [
+  "/images/info-1-poster-dark.png",
+  "/images/info-2-poster-dark.png",
+  "/images/info-3-poster-dark.png",
+  "/images/info-4-poster-dark.png",
+];
+
+export const LIGHT_POSTERS = [
+  "/images/info-1-poster-light.png",
+  "/images/info-2-poster-light.png",
+  "/images/info-3-poster-light.png",
+  "/images/info-4-poster-light.png",
+];
+
 export const GroupSections: InfoSection[] = [
   {
     id: "info-1",
@@ -76,3 +90,7 @@ export const GroupSections: InfoSection[] = [
 export const DARK_GROUP_VIDEOS = ["/videos/group-info-1-dark.mov"];
 
 export const LIGHT_GROUP_VIDEOS = ["/videos/group-info-1-light.mov"];
+
+export const DARK_GROUP_POSTERS = ["/images/group-info-1-poster-dark.png"];
+
+export const LIGHT_GROUP_POSTERS = ["/images/group-info-1-poster-light.png"];

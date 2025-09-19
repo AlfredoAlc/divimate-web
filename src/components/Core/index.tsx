@@ -10,10 +10,16 @@ import useScreenWidth from "@/hooks/useScreenWidth";
 export type CoreProps = {
   sections: InfoSection[];
   videos: string[];
+  posters: string[];
   animations: ReactNode[];
 };
 
-export default function Core({ sections, videos, animations }: CoreProps) {
+export default function Core({
+  sections,
+  videos,
+  posters,
+  animations,
+}: CoreProps) {
   const screenSize = useScreenWidth();
 
   if (screenSize === "small")
@@ -21,6 +27,7 @@ export default function Core({ sections, videos, animations }: CoreProps) {
       <VerticalCore
         sections={sections}
         videos={videos}
+        posters={posters}
         animations={animations}
       />
     );
@@ -29,6 +36,7 @@ export default function Core({ sections, videos, animations }: CoreProps) {
       <HorizontalCore
         sections={sections}
         videos={videos}
+        posters={posters}
         animations={animations}
       />
     );

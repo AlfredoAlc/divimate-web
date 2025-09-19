@@ -13,7 +13,13 @@ import Hero from "@/components/Hero";
 import Outro from "@/components/Outro";
 import { VideoCarrouselProvider } from "@/contexts/VideoCarrouselProvider";
 import useTheme from "@/hooks/useTheme";
-import { DARK_VIDEOS, LIGHT_VIDEOS, Sections } from "@/utils/InfoUtils";
+import {
+  DARK_POSTERS,
+  DARK_VIDEOS,
+  LIGHT_POSTERS,
+  LIGHT_VIDEOS,
+  Sections,
+} from "@/utils/InfoUtils";
 
 export default function Home() {
   const theme = useTheme();
@@ -31,6 +37,7 @@ export default function Home() {
               <Info3 key="animation-split-expenses" />,
               <Info4 key="animation-wifi-off" />,
             ]}
+            posters={theme === "dark" ? DARK_POSTERS : LIGHT_POSTERS}
             sections={Sections}
           />
           <FloatingCTA />

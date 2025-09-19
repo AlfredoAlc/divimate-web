@@ -8,6 +8,7 @@ import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 type VideoCarrouselProps = {
   videos: string[];
   animations: ReactNode[];
+  posters: string[];
   width?: number;
   height?: number;
 };
@@ -15,6 +16,7 @@ type VideoCarrouselProps = {
 export default function VideoCarrousel({
   videos,
   animations,
+  posters,
   width = 240,
   height = 497,
 }: VideoCarrouselProps) {
@@ -32,6 +34,7 @@ export default function VideoCarrousel({
         ref={videoRefs[currentVideo]}
         src={videos[currentVideo]}
         animation={animations[currentVideo]}
+        poster={posters[currentVideo]}
         isInit={isInit}
         isAnimationVisible={isAnimationVisible}
       />

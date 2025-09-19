@@ -11,6 +11,7 @@ import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 type SectionProps = {
   video: string;
   animation: ReactNode;
+  poster: string;
   index: number;
 };
 
@@ -21,10 +22,11 @@ export default function Section({
   Icon,
   extra,
   video,
+  poster,
   animation,
   index,
 }: InfoSection & SectionProps) {
-  const { currentVideo, isInit, isAnimationVisible } = useVideoCarrousel();
+  const { currentVideo, isAnimationVisible } = useVideoCarrousel();
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -68,7 +70,7 @@ export default function Section({
           ref={videoRef}
           animation={animation}
           src={video}
-          isInit={currentVideo < index || isInit}
+          poster={poster}
           isAnimationVisible={currentVideo === index && isAnimationVisible}
         />
       </div>

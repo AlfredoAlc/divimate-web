@@ -13,6 +13,7 @@ import { useVideoCarrousel } from "@/contexts/VideoCarrouselProvider";
 export default function VerticalCore({
   sections,
   videos,
+  posters,
   animations,
 }: CoreProps) {
   const { handleChangeVideo } = useVideoCarrousel();
@@ -44,10 +45,11 @@ export default function VerticalCore({
         {...item}
         index={i}
         video={videos[i]}
+        poster={posters[i]}
         animation={animations[i]}
       />
     ),
-    [videos, animations],
+    [videos, animations, posters],
   );
 
   return <div className={styles.container}>{sections.map(renderItems)}</div>;

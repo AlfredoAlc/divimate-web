@@ -8,8 +8,10 @@ import GroupsHero from "@/components/GroupsHero";
 import { VideoCarrouselProvider } from "@/contexts/VideoCarrouselProvider";
 import useTheme from "@/hooks/useTheme";
 import {
+  DARK_GROUP_POSTERS,
   DARK_GROUP_VIDEOS,
   GroupSections,
+  LIGHT_GROUP_POSTERS,
   LIGHT_GROUP_VIDEOS,
 } from "@/utils/InfoUtils";
 
@@ -25,6 +27,9 @@ export default function GroupPage() {
             videos={theme === "dark" ? DARK_GROUP_VIDEOS : LIGHT_GROUP_VIDEOS}
             animations={[<GroupInfo1 key="group-info-1" />]}
             sections={GroupSections}
+            posters={
+              theme === "dark" ? DARK_GROUP_POSTERS : LIGHT_GROUP_POSTERS
+            }
           />
         </main>
       </VideoCarrouselProvider>

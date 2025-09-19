@@ -12,13 +12,13 @@ type VideoCarrouselProps = {
   width?: number;
   height?: number;
   src: string;
-  isInit?: boolean;
+  poster?: string;
   isAnimationVisible?: boolean;
 };
 
 export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
   function AnimatedVideo(
-    { animation, width = 240, height = 497, src, isInit, isAnimationVisible },
+    { animation, width = 240, height = 497, src, poster, isAnimationVisible },
     ref,
   ) {
     const [isVideoVisible, setIsVideoVisible] = useState(false);
@@ -30,7 +30,8 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     return (
       <AnimatePresence
         onExitComplete={() => {
-          if (ref && typeof ref === "object" && ref.current && !isInit) {
+          if (ref && typeof ref === "object" && ref.current) {
+            ref.current.currentTime = 0;
             ref.current
               .play()
               .catch((err) => console.log("Play video error: ", err));
@@ -58,6 +59,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               playsInline
               autoPlay={false}
               className={styles.videoStyle}
+              poster={poster}
             />
           </motion.div>
         )}
