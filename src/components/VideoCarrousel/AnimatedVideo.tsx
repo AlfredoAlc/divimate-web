@@ -24,8 +24,17 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
     const [isVideoVisible, setIsVideoVisible] = useState(false);
 
     useEffect(() => {
-      if (isAnimationVisible) setTimeout(() => setIsVideoVisible(true), 500);
-    }, [isAnimationVisible]);
+      if (isAnimationVisible) {
+        setTimeout(() => {
+          setIsVideoVisible(true);
+          if (ref && typeof ref === "object" && ref.current) {
+            ref.current.load();
+            ref.current.currentTime = 0;
+            ref.current.pause();
+          }
+        }, 500);
+      }
+    }, [isAnimationVisible, ref]);
 
     return (
       <AnimatePresence
@@ -57,7 +66,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               loop
               muted
               playsInline
-              //autoPlay={false}
+              autoPlay={false}
               className={styles.videoStyle}
               poster={poster}
             />
