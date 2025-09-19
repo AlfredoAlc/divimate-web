@@ -60,9 +60,14 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
         setTimeout(() => {
           isAnimationEnded.current = true;
           handlePlay();
-        }, 1250);
+        }, 1750);
       }
     }, [isAnimationVisible, ref, handlePlay]);
+
+    const handleLoaded = useCallback(() => {
+      isVideoReady.current = true;
+      if (isAnimationEnded.current) handlePlay(true);
+    }, [handlePlay, isAnimationEnded]);
 
     return (
       <AnimatePresence>
@@ -87,10 +92,7 @@ export default forwardRef<HTMLVideoElement, VideoCarrouselProps>(
               playsInline
               autoPlay={false}
               className={styles.videoStyle}
-              onLoadedData={() => {
-                isVideoReady.current = true;
-                if (isAnimationEnded.current) handlePlay(true);
-              }}
+              onLoadedData={handleLoaded}
               poster={poster}
             />
           </motion.div>
